@@ -1,18 +1,18 @@
 create table Rol (
-	id_rol int NOT NULL,
+	id_rol int NOT NULL AUTO_INCREMENT,
     nombre_rol varchar(255) NOT NULL,
     primary key (id_rol)
 );
 
 create table Cliente (
-	id_cliente int NOT NULL,
+	id_cliente int NOT NULL AUTO_INCREMENT,
 	nombre_cliente varchar(255),
     primary key (id_cliente),
     index(nombre_cliente)
 );
 
 create table Proyecto (
-	id_proyecto int NOT NULL,
+	id_proyecto int NOT NULL AUTO_INCREMENT,
     cliente int NOT NULL,
     nombre_proyecto varchar(255),
     primary key (id_proyecto),
@@ -20,7 +20,7 @@ create table Proyecto (
 );
 
 create table Empleado (
-	id_empleado int NOT NULL,
+	id_empleado int NOT NULL AUTO_INCREMENT,
     rol int NOT NULL,
     proyecto int,
     horas_dia int,

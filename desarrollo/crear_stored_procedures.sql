@@ -172,26 +172,22 @@ DELIMITER $$
 CREATE PROCEDURE `iniciar_empleadosIT`(
 )
 BEGIN
-    insert into Rol value (1, "Project Manager");
-	insert into Rol value (2, "Developer");
-	insert into Rol value (3, "Tester");
+    insert into Rol (nombre_rol) value ("Project Manager");
+	insert into Rol (nombre_rol) value ("Developer");
+	insert into Rol (nombre_rol) value ("Tester");
 
-	insert into Cliente values (1, "Google");
-	insert into Cliente values (2, "Apple");
-	insert into Cliente values (3, "Microsoft");
-	insert into Cliente values (4, "Lenovo");
+	insert into Cliente (nombre_cliente) values ("Google");
+	insert into Cliente (nombre_cliente) values ("Apple");
+	insert into Cliente (nombre_cliente) values ("Microsoft");
+	insert into Cliente (nombre_cliente) values ("Lenovo");
 
-	insert into Proyecto values (6708, 1, "Google Analytics");
-	insert into Proyecto values (6428, 1, "Google Components 2022");
-	insert into Proyecto values (9342, 2, "Apple TV Implementation");
-	insert into Proyecto values (1060, 3, "Microsoft Components");
+	insert into Proyecto (cliente, nombre_proyecto) values ((select id_cliente from cliente where nombre_cliente = "Google"), "Google Analytics");
+	insert into Proyecto (cliente, nombre_proyecto) values ((select id_cliente from cliente where nombre_cliente = "Google"), "Google Components 2022");
+	insert into Proyecto (cliente, nombre_proyecto) values ((select id_cliente from cliente where nombre_cliente = "Apple"), "Apple TV Implementation");
+	insert into Proyecto (cliente, nombre_proyecto) values ((select id_cliente from cliente where nombre_cliente = "Microsoft"), "Microsoft Components");
 
-	insert into Empleado values (001, 1, 6708, NULL, NULL, NULL, "Enzo Figueroa");
-	insert into Empleado values (002, 2, 9342, NULL, NULL, NULL, "Camila Galarza");
-	insert into Empleado values (003, 3, 1060,	NULL, NULL, NULL, "Pablo Gonzáles");
-	insert into Empleado values (004, 2, 6708, NULL, NULL, NULL, "Cristian Lazzaro");
-	insert into Empleado values (005, 2, 9342,	NULL, NULL, NULL, "Federico Sanz");
-	insert into Empleado values (006, 2, 9342, NULL, NULL, NULL, "Pedro Berra");
-	insert into Empleado values (007, 3, 1060, NULL, NULL, NULL, "Susana Galerna");
-	insert into Empleado values (008, 2, 6708, NULL, NULL, NULL, "Gabriel Silva");
+	insert into Empleado (rol, proyecto, horas_dia, horas_semana, horas_mes, nombre_empleado) values (1, (select id_proyecto from proyecto where nombre_proyecto = "Google Analytics"), NULL, NULL, NULL, "Enzo Figueroa");
+	insert into Empleado (rol, proyecto, horas_dia, horas_semana, horas_mes, nombre_empleado) values (2, (select id_proyecto from proyecto where nombre_proyecto = "Apple TV Implementation"), NULL, NULL, NULL, "Camila Galarza");
+	insert into Empleado (rol, proyecto, horas_dia, horas_semana, horas_mes, nombre_empleado) values (3, (select id_proyecto from proyecto where nombre_proyecto = "Google Analytics"),	NULL, NULL, NULL, "Pablo Gonzáles");
+	insert into Empleado (rol, proyecto, horas_dia, horas_semana, horas_mes, nombre_empleado) values (2, (select id_proyecto from proyecto where nombre_proyecto = "Google Components 2022"), NULL, NULL, NULL, "Cristian Lazzaro");
 END; $$
