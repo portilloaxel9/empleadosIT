@@ -1,13 +1,11 @@
 create table Rol (
 	id_rol int NOT NULL,
     nombre_rol varchar(255) NOT NULL,
-    primary key (id_rol),
-    index(nombre_rol)
+    primary key (id_rol)
 );
 
 create table Cliente (
 	id_cliente int NOT NULL,
-	proyecto int NOT NULL,
 	nombre_cliente varchar(255),
     primary key (id_cliente),
     index(nombre_cliente)
@@ -18,8 +16,7 @@ create table Proyecto (
     cliente int NOT NULL,
     nombre_proyecto varchar(255),
     primary key (id_proyecto),
-    foreign key (cliente) references Cliente(id_cliente),
-    index(nombre_proyecto)
+    foreign key (cliente) references Cliente(id_cliente)
 );
 
 create table Empleado (

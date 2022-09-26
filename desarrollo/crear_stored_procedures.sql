@@ -21,6 +21,23 @@ BEGIN
 	WHERE 
 		e.nombre_empleado = empleado;
 END; $$
+
+DELIMITER $$
+CREATE PROCEDURE `ListarInformacionCliente`(
+	IN cliente VARCHAR(255)
+)
+BEGIN
+	SELECT 
+		nombre_cliente AS 'Cliente',
+        COUNT(id_proyecto) AS 'Cantidad de proyectos'
+	FROM 
+		Cliente AS c
+	INNER JOIN
+		Proyecto AS p ON p.cliente = c.id_cliente
+	WHERE 
+		c.nombre_cliente = cliente
+	GROUP BY nombre_cliente;
+END; $$
     
 DELIMITER $$
 CREATE PROCEDURE `ListarHorasPorDiaCliente`(
@@ -159,12 +176,13 @@ BEGIN
 	insert into Rol value (2, "Developer");
 	insert into Rol value (3, "Tester");
 
-	insert into Cliente values (1, 6708, "Google");
-	insert into Cliente values (2, 9342, "Apple");
-	insert into Cliente values (3, 1060, "Microsoft");
-	insert into Cliente values (4, 1497, "Lenovo");
+	insert into Cliente values (1, "Google");
+	insert into Cliente values (2, "Apple");
+	insert into Cliente values (3, "Microsoft");
+	insert into Cliente values (4, "Lenovo");
 
 	insert into Proyecto values (6708, 1, "Google Analytics");
+	insert into Proyecto values (6428, 1, "Google Components 2022");
 	insert into Proyecto values (9342, 2, "Apple TV Implementation");
 	insert into Proyecto values (1060, 3, "Microsoft Components");
 
